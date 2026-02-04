@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="refresh" content="0; url=https://www.nih.gov/">
   <script>
     // POST click info to Google Sheet
     fetch("https://script.google.com/macros/s/AKfycbzuUZJdWU02Er-qPqFw63_jJ1EyqQC3DyvX2f5LW39cjGEpoBO08yvXe63HI01t1A1B/exec", {
@@ -11,7 +10,15 @@
         video_id: "video_1"
       }),
       headers: { "Content-Type": "application/json" }
-    }).catch(e => console.log(e));
+    })
+    .then(() => {
+      // Redirect after successful POST
+      window.location.href = "https://www.nih.gov/";
+    })
+    .catch(() => {
+      // Redirect even if POST fails (so user isn't stuck)
+      window.location.href = "https://www.nih.gov/";
+    });
   </script>
 </head>
 <body>
