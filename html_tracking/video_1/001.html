@@ -2,21 +2,25 @@
 <html>
 <head>
   <script>
-    // Send click info via GET request with URL parameters
-    var url = "https://script.google.com/macros/s/AKfycbyJDE9-j4OnaRLYUFIPY2un5jPLh3k00ciU3g9n53Q0qG7DE6vZZYRw9Ye5Z8FmFLwr/exec" +
-              "?patient_id=001&video_id=video_1";
+    // Extract patient_id from filename and video_id from folder
+    var path = window.location.pathname; // Gets "/html_tracking_test/html_tracking/video_1/001"
+    var parts = path.split('/');
+    var videoId = parts[parts.length - 2]; // "video_1"
+    var patientId = parts[parts.length - 1]; // "001"
+    
+    var url = "https://script.google.com/macros/s/AKfycbzuUZJdWU02Er-qPqFw63_jJ1EyqQC3DyvX2f5LW39cjGEpoBO08yvXe63HI01t1A1B/exec" +
+              "?patient_id=" + patientId + "&video_id=" + videoId;
     
     fetch(url)
       .then(() => {
         window.location.href = "https://www.nih.gov/";
       })
       .catch(() => {
-        // Redirect even if tracking fails
         window.location.href = "https://www.nih.gov/";
       });
   </script>
 </head>
 <body>
-  Redirecting…
+  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 </body>
 </html>
