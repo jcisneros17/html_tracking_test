@@ -2,37 +2,21 @@
 <html>
 <head>
   <script>
-    console.log("Starting fetch...");
+    // Send click info via GET request with URL parameters
+    var url = "https://script.google.com/macros/s/AKfycbyJDE9-j4OnaRLYUFIPY2un5jPLh3k00ciU3g9n53Q0qG7DE6vZZYRw9Ye5Z8FmFLwr/exec" +
+              "?patient_id=001&video_id=video_1";
     
-    fetch("https://script.google.com/macros/s/AKfycbzrxOAZybsAMQ3c1NVmdd0eQOMO6l5jT9O2XIzZwsBr4islb3YKzXPoFQ0MoqUNcJvR/exec", {
-      method: "POST",
-      body: JSON.stringify({
-        patient_id: "001",
-        video_id: "video_1"
-      }),
-      headers: { "Content-Type": "application/json" }
-    })
-    .then(response => {
-      console.log("Response status:", response.status);
-      return response.text();
-    })
-    .then(data => {
-      console.log("Response data:", data);
-      alert("Success! Redirecting...");
-      window.location.href = "https://www.nih.gov/";
-    })
-    .catch(error => {
-      console.error("Error:", error);
-      alert("Error: " + error.message);
-      // Still redirect after showing error
-      setTimeout(() => {
+    fetch(url)
+      .then(() => {
         window.location.href = "https://www.nih.gov/";
-      }, 3000);
-    });
+      })
+      .catch(() => {
+        // Redirect even if tracking fails
+        window.location.href = "https://www.nih.gov/";
+      });
   </script>
 </head>
 <body>
-  <h2>Processing click...</h2>
-  <p>Check the browser console (F12) for details.</p>
+  Redirecting…
 </body>
 </html>
